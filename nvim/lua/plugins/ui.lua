@@ -278,7 +278,7 @@ return {
   -- Indentation guides
   {
     'lukas-reineke/indent-blankline.nvim',
-    event = 'LazyFile',
+    event = { 'BufReadPost', 'BufNewFile' },
     opts = {
       indent = {
         char = '│',
@@ -308,7 +308,7 @@ return {
   {
     'echasnovski/mini.indentscope',
     version = false,
-    event = 'LazyFile',
+    event = { 'BufReadPost', 'BufNewFile' },
     opts = {
       symbol = '│',
       options = { try_as_border = true },
@@ -338,7 +338,7 @@ return {
   -- Git signs
   {
     'lewis6991/gitsigns.nvim',
-    event = 'LazyFile',
+    event = { 'BufReadPost', 'BufNewFile' },
     opts = {
       signs = {
         add = { text = '▎' },
@@ -399,7 +399,7 @@ return {
   {
     'folke/todo-comments.nvim',
     cmd = { 'TodoTrouble', 'TodoTelescope' },
-    event = 'LazyFile',
+    event = { 'BufReadPost', 'BufNewFile' },
     opts = {
       keywords = {
         FIX = {

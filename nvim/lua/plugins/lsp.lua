@@ -6,7 +6,7 @@ return {
   -- LSP Config
   {
     'neovim/nvim-lspconfig',
-    event = 'LazyFile',
+    event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
       'mason.nvim',
       'williamboman/mason-lspconfig.nvim',
@@ -431,7 +431,7 @@ return {
   {
     'mfussenegger/nvim-lint',
     lazy = true,
-    event = 'LazyFile',
+    event = { 'BufReadPost', 'BufNewFile' },
     opts = {
       linters_by_ft = {
         fish = { 'fish' },

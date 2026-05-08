@@ -8,7 +8,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     version = false,
     build = ':TSUpdate',
-    event = 'LazyFile',
+    event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'windwp/nvim-ts-autotag',
@@ -376,7 +376,7 @@ return {
   -- Colorizer: color preview
   {
     'NvChad/nvim-colorizer.lua',
-    event = 'LazyFile',
+    event = { 'BufReadPost', 'BufNewFile' },
     opts = {
       filetypes = { '*', '!lazy' },
       user_default_options = {
