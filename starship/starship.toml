@@ -1,0 +1,82 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+
+format = """
+$time$cmd_duration
+[┌─\\[](fg:#555555)$username$hostname[\\]─\\[](fg:#555555)$directory[\\]](fg:#555555)
+[├─](fg:#555555)$git_branch$git_status$nodejs$rust$golang$python$docker_context
+[└─](fg:#555555)$character
+"""
+
+[username]
+show_always = true
+format = "[$user](bold fg:#fcee0a)"
+
+[hostname]
+ssh_only = false
+trim_at = "."
+format = "[@](fg:#555555)[$hostname](fg:#00cfff)"
+
+[directory]
+format = "[$path](fg:#fcee0a)[$read_only](fg:#ff2f6e)"
+truncation_length = 3
+truncate_to_repo = true
+read_only = " 󰌾"
+
+[character]
+success_symbol = "[❯](bold fg:#00cfff)"
+error_symbol = "[❯](bold fg:#ff2f6e)"
+vimcmd_symbol = "[❯](bold fg:#fcee0a)"
+
+[git_branch]
+format = "[\\[ $branch](fg:#ff2f6e)"
+symbol = ""
+truncation_length = 25
+
+[git_status]
+format = "[$all_status$ahead_behind\\]](fg:#ff2f6e)"
+conflicted = "✖"
+ahead = "↑${count}"
+behind = "↓${count}"
+diverged = "⇕"
+untracked = ""
+stashed = "≡"
+modified = "✗${count}"
+staged = "✔${count}"
+renamed = "»"
+deleted = "✘${count}"
+
+[nodejs]
+format = "[─\\[ $version\\]](fg:#00cfff)"
+symbol = " "
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+
+[rust]
+format = "[─\\[ $version\\]](fg:#00cfff)"
+symbol = ""
+
+[golang]
+format = "[─\\[ $version\\]](fg:#00cfff)"
+symbol = ""
+
+[python]
+format = "[─\\[ $version\\]](fg:#00cfff)"
+symbol = " "
+
+[docker_context]
+format = "[─\\[  $context\\]](fg:#00cfff)"
+symbol = ""
+only_with_files = true
+
+[time]
+disabled = false
+format = "[$time](fg:#555555)"
+time_format = "%H:%M:%S"
+
+[cmd_duration]
+min_time = 2_000
+format = "[  took $duration](fg:#fcee0a)"
+
+[line_break]
+disabled = true
