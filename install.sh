@@ -160,6 +160,7 @@ install_dependencies() {
     ripgrep
     fd
     lazygit
+    starship
     btop
     procs
 
@@ -337,11 +338,12 @@ install_dotfiles() {
   # Zsh
   symlink "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
   symlink "$DOTFILES_DIR/zsh/.zprofile" "$HOME/.zprofile"
-  symlink "$DOTFILES_DIR/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
-
   # Terminals
   symlink "$DOTFILES_DIR/kitty" "$HOME/.config/kitty"
   symlink "$DOTFILES_DIR/ghostty" "$HOME/.config/ghostty"
+
+  # Starship
+  symlink "$DOTFILES_DIR/starship/starship.toml" "$HOME/.config/starship.toml"
 
   # Git
   if [[ -f "$DOTFILES_DIR/.gitconfig" ]]; then
@@ -420,7 +422,7 @@ print_summary() {
   echo -e "${CYAN}What's installed:${NC}"
   echo "  • Neovim (LazyVim) with Tokyo Night theme"
   echo "  • Tmux with plugins (resurrect, continuum, yank)"
-  echo "  • Zsh + Oh My Zsh + Powerlevel10k"
+  echo "  • Zsh + Oh My Zsh + Starship (Cyberpunk prompt)"
   echo "  • Modern CLI tools (fzf, zoxide, eza, bat, etc.)"
   echo "  • Development environments (Node, Python, Rust, Go)"
   echo ""
