@@ -228,9 +228,8 @@ alias myalias='mycommand'
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
-## 🙏 Credits
+## Credits
 
-- Inspired by [vmarcosp/dotfiles](https://github.com/vmarcosp/dotfiles)
 - [LazyVim](https://www.lazyvim.org/) for the excellent Neovim distribution
 - [Tokyo Night](https://github.com/folke/tokyonight.nvim) theme by folke
 
