@@ -10,7 +10,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # Theme
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME=""
 
 # Plugins
 plugins=(
@@ -50,24 +50,15 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # --------------------------------------------
-# Powerlevel10k Configuration
-# --------------------------------------------
-
-# Enable Powerlevel10k instant prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Load Powerlevel10k config
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# --------------------------------------------
 # Environment Variables
 # --------------------------------------------
 
 # Editor
 export EDITOR='nvim'
 export VISUAL='nvim'
+
+# Terminal
+export TERMINAL='kitty'
 
 # Language
 export LANG='en_US.UTF-8'
@@ -96,7 +87,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 
 # Bat
-export BAT_THEME='tokyonight_storm'
+export BAT_THEME='Dracula'
 
 # Eza
 export EZA_COLORS='da=1;34:di=1;36:ex=1;32:fi=0:ln=1;35:or=1;31:pi=1;33:so=1;32:bd=1;33:cd=1;33:su=0:sg=0:tw=0:ow=0'
@@ -441,3 +432,9 @@ export GPG_TTY=$(tty)
 
 # Load local config if exists
 [[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
+
+# --------------------------------------------
+# Starship Prompt
+# --------------------------------------------
+
+eval "$(starship init zsh)"
