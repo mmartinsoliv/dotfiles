@@ -238,8 +238,6 @@ return {
       setup = {},
     },
     config = function(_, opts)
-      local Util = require('lazyvim.util')
-
       -- Setup diagnostics
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
