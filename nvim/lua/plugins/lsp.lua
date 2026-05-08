@@ -11,6 +11,7 @@ return {
       'mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'hrsh7th/cmp-nvim-lsp',
+      'b0o/SchemaStore.nvim',
     },
     opts = {
       diagnostics = {
@@ -157,8 +158,8 @@ return {
                   'tw="([^"]*)',
                   'tw={"([^"}]*)',
                   'tw\\.\\w+`([^`]*)',
-                  'tw\\.\\w+\("([^"]*)',
-                  'tw\\.\\w+\({\s*\w+:\s*"([^"]*)',
+                  'tw\\.\\w+\\("([^"]*)',
+                  'tw\\.\\w+\\({\\s*\\w+:\\s*"([^"]*)',
                 },
               },
             },
@@ -170,7 +171,6 @@ return {
               format = {
                 enable = true,
               },
-              schemas = require('schemastore').json.schemas(),
               validate = { enable = true },
             },
           },
@@ -187,7 +187,6 @@ return {
                 enable = false,
                 url = '',
               },
-              schemas = require('schemastore').yaml.schemas(),
             },
           },
         },
@@ -293,6 +292,35 @@ return {
       if have_mason then
         mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
       end
+
+      -- Setup schemastore for JSON and YAML
+      local have_schemastore, schemastore = pcall(require, 'schemastore')
+      if have_schemastore then
+        local lspconfig = require('lspconfig')
+        if lspconfig.jsonls then
+          lspconfig.jsonls.setup({
+            settings = {
+              json = {
+                schemas = schemastore.json.schemas(),
+                validate = { enable = true },
+              },
+            },
+          })
+        end
+        if lspconfig.yamlls then
+          lspconfig.yamlls.setup({
+            settings = {
+              yaml = {
+                schemaStore = {
+                  enable = false,
+                  url = '',
+                },
+                schemas = schemastore.yaml.schemas(),
+              },
+            },
+          })
+        end
+      end
     end,
   },
 
@@ -343,13 +371,6 @@ return {
   {
     'williamboman/mason-lspconfig.nvim',
     dependencies = { 'williamboman/mason.nvim' },
-  },
-
-  -- Schema store for JSON/YAML
-  {
-    'b0o/SchemaStore.nvim',
-    lazy = true,
-    version = false,
   },
 
   -- Formatting
