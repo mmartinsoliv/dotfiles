@@ -226,16 +226,6 @@ return {
     cmd = { 'Git', 'G' },
   },
 
-  -- Rest.nvim: HTTP client
-  {
-    'rest-nvim/rest.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    keys = {
-      { '<leader>rr', '<cmd>Rest run<cr>', desc = 'Run request under cursor' },
-      { '<leader>rl', '<cmd>Rest last<cr>', desc = 'Re-run last request' },
-    },
-  },
-
   -- Marks: better marks management
   {
     'chentoast/marks.nvim',
