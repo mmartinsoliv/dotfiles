@@ -121,7 +121,7 @@ return {
             },
           },
         },
-        ruff_lsp = {},
+        ruff = {},
         rust_analyzer = {
           settings = {
             ['rust-analyzer'] = {
