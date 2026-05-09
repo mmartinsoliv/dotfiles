@@ -121,7 +121,7 @@ return {
             },
           },
         },
-        ruff = {},
+        ruff = { mason = false },
         rust_analyzer = {
           settings = {
             ['rust-analyzer'] = {
@@ -251,7 +251,7 @@ return {
         opts.capabilities or {}
       )
 
-      local function setup(server)
+      local function setup_server(server)
         local server_opts = vim.tbl_deep_extend('force', {
           capabilities = vim.deepcopy(capabilities),
         }, servers[server] or {})
@@ -265,59 +265,60 @@ return {
             return
           end
         end
-        require('lspconfig')[server].setup(server_opts)
+        vim.lsp.config(server, server_opts)
+        vim.lsp.enable(server)
       end
 
       -- Get all servers that are available through mason-lspconfig
       local have_mason, mlsp = pcall(require, 'mason-lspconfig')
       local all_mslp_servers = {}
       if have_mason then
-        all_mslp_servers = vim.tbl_keys(require('mason-lspconfig.mappings.server').lspconfig_to_package)
+        all_mslp_servers = require('mason-lspconfig').get_available_servers()
       end
 
       local ensure_installed = {}
+      local mason_servers = {}
       for server, server_opts in pairs(servers) do
         if server_opts then
           server_opts = server_opts == true and {} or server_opts
           if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
-            setup(server)
+            setup_server(server)
           else
             ensure_installed[#ensure_installed + 1] = server
+            mason_servers[#mason_servers + 1] = server
           end
         end
       end
 
       if have_mason then
-        mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
+        mlsp.setup({ ensure_installed = ensure_installed })
+        for _, server in ipairs(mason_servers) do
+          setup_server(server)
+        end
       end
 
       -- Setup schemastore for JSON and YAML
       local have_schemastore, schemastore = pcall(require, 'schemastore')
       if have_schemastore then
-        local lspconfig = require('lspconfig')
-        if lspconfig.jsonls then
-          lspconfig.jsonls.setup({
-            settings = {
-              json = {
-                schemas = schemastore.json.schemas(),
-                validate = { enable = true },
-              },
+        vim.lsp.config('jsonls', {
+          settings = {
+            json = {
+              schemas = schemastore.json.schemas(),
+              validate = { enable = true },
             },
-          })
-        end
-        if lspconfig.yamlls then
-          lspconfig.yamlls.setup({
-            settings = {
-              yaml = {
-                schemaStore = {
-                  enable = false,
-                  url = '',
-                },
-                schemas = schemastore.yaml.schemas(),
+          },
+        })
+        vim.lsp.config('yamlls', {
+          settings = {
+            yaml = {
+              schemaStore = {
+                enable = false,
+                url = '',
               },
+              schemas = schemastore.yaml.schemas(),
             },
-          })
-        end
+          },
+        })
       end
     end,
   },
