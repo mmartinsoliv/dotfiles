@@ -1,0 +1,70 @@
+<h2>Qual direção visual te atrai?</h2>
+<p class="subtitle">Cada opção representa um estilo diferente de terminal. Escolha a que mais combina com você.</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="minimal" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#0d1117;padding:18px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;border-radius:6px;color:#e6edf3">
+        <div style="color:#58a6ff">~/projects/dotfiles</div>
+        <div style="color:#3fb950">❯</div>
+        <div style="height:6px"></div>
+        <div><span style="color:#8b949e">git:(</span><span style="color:#f78166">main</span><span style="color:#8b949e">)</span> ls</div>
+        <div style="color:#8b949e">README.md  kitty/  zsh/  nvim/</div>
+        <div style="color:#3fb950">❯</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Minimal</h3>
+      <p>Prompt clean e direto. Apenas o essencial: diretório, branch git, e um símbolo elegante. Sem ícones extras, sem segments poluídos.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="powerline" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#1e1e2e;padding:18px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;border-radius:6px;color:#cdd6f4">
+        <div>
+          <span style="background:#89b4fa;color:#1e1e2e;padding:2px 10px;border-radius:4px 0 0 4px;font-weight:bold"> dotfiles </span><span style="background:#313244;color:#89b4fa;padding:2px 10px"> </span><span style="background:#313244;color:#a6e3a1;padding:2px 10px"> main </span><span style="background:#313244;color:#f38ba8;padding:2px 10px">✗ 2</span><span style="background:#1e1e2e;color:#313244;padding:2px 8px"></span>
+        </div>
+        <div style="height:4px"></div>
+        <div><span style="color:#89b4fa">node</span><span style="color:#6c7086"> v20.11</span> <span style="color:#a6e3a1">❯</span></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Powerline Moderno</h3>
+      <p>Segments coloridos com contexto rico: runtime, git status detalhado, ambiente. Visual informativo e profissional.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="neon" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#0c0c0c;padding:18px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;border-radius:6px;color:#00ff88">
+        <div style="color:#ff2079">▓▒░ </div>
+        <div><span style="color:#ff2079">~/dotfiles</span> <span style="color:#00cfff">on</span> <span style="color:#ffca00"> main</span> <span style="color:#00ff88">via </span><span style="color:#ff2079"> v20</span></div>
+        <div style="color:#00ff88">❯❯ <span style="color:#e0e0e0"></span></div>
+        <div style="height:4px"></div>
+        <div><span style="color:#888">17:42:08</span></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Neon / Cyberpunk</h3>
+      <p>Cores vibrantes, estilo hacker. Fundo quase preto com acentos em magenta, cyan e verde neon. Bold e expressivo.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="tokyonight-refined" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#1a1b26;padding:18px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;border-radius:6px;color:#c0caf5">
+        <div><span style="color:#7aa2f7">󰉋 </span><span style="color:#c0caf5">~/dotfiles</span> <span style="color:#414868">on</span> <span style="color:#bb9af7"> main</span></div>
+        <div><span style="color:#9ece6a">✔</span> <span style="color:#7dcfff">node</span><span style="color:#414868">@20</span></div>
+        <div style="height:2px"></div>
+        <div><span style="color:#7aa2f7">❯ </span></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Tokyo Night Refinado</h3>
+      <p>Mantém o Tokyo Night mas com prompt repensado: mais espaço, hierarquia visual mais clara, menos ruído. Evolução do atual.</p>
+    </div>
+  </div>
+
+</div>

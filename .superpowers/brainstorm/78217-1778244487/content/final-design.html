@@ -1,0 +1,83 @@
+<h2>Design final — Cyberpunk Terminal</h2>
+<p class="subtitle">É assim que vai ficar após a implementação. Revise e confirme.</p>
+
+<div class="section">
+  <div class="label">Preview do prompt (Starship — hacker multi-linha)</div>
+  <div style="background:#0a0a0a;padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;border-radius:8px;color:#e0e0e0;border:1px solid #1e1e1e;margin-top:10px">
+
+    <div style="color:#555;font-size:11.5px;letter-spacing:0.5px">17:42:08</div>
+    <div><span style="color:#555">┌─[</span><span style="color:#fcee0a">matheus</span><span style="color:#555">@</span><span style="color:#00cfff">macbook</span><span style="color:#555">]─[</span><span style="color:#fcee0a">~/projects/dotfiles</span><span style="color:#555">]</span></div>
+    <div><span style="color:#555">├─[</span><span style="color:#ff2f6e"> main</span><span style="color:#555">·</span><span style="color:#fcee0a">✗ 2</span><span style="color:#555">]─[</span><span style="color:#00cfff"> node v20</span><span style="color:#555">]</span></div>
+    <div><span style="color:#555">└─</span><span style="color:#00cfff">❯ </span><span style="color:#e0e0e0">git status</span></div>
+    <div>&nbsp;</div>
+    <div><span style="color:#00cfff">On branch main</span></div>
+    <div><span style="color:#ff2f6e">Changes not staged:</span></div>
+    <div><span style="color:#555">  modified: </span><span style="color:#fcee0a">kitty/kitty.conf</span></div>
+    <div><span style="color:#555">  modified: </span><span style="color:#fcee0a">zsh/.zshrc</span></div>
+    <div>&nbsp;</div>
+    <div style="color:#555;font-size:11.5px">17:42:11 · 3s</div>
+    <div><span style="color:#555">┌─[</span><span style="color:#fcee0a">matheus</span><span style="color:#555">@</span><span style="color:#00cfff">macbook</span><span style="color:#555">]─[</span><span style="color:#fcee0a">~/projects/dotfiles</span><span style="color:#555">]</span></div>
+    <div><span style="color:#555">├─[</span><span style="color:#ff2f6e"> main</span><span style="color:#555">·</span><span style="color:#fcee0a">✗ 2</span><span style="color:#555">]</span></div>
+    <div><span style="color:#555">└─</span><span style="color:#00cfff">❯ </span></div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px">
+  <div class="label">Paleta de cores — Kitty (Cyberpunk 2077)</div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
+    <div style="text-align:center">
+      <div style="width:48px;height:48px;border-radius:8px;background:#0a0a0a;border:1px solid #333;margin:0 auto"></div>
+      <div style="font-size:11px;color:#888;margin-top:4px">BG<br>#0a0a0a</div>
+    </div>
+    <div style="text-align:center">
+      <div style="width:48px;height:48px;border-radius:8px;background:#fcee0a;margin:0 auto"></div>
+      <div style="font-size:11px;color:#888;margin-top:4px">Yellow<br>#fcee0a</div>
+    </div>
+    <div style="text-align:center">
+      <div style="width:48px;height:48px;border-radius:8px;background:#00cfff;margin:0 auto"></div>
+      <div style="font-size:11px;color:#888;margin-top:4px">Cyan<br>#00cfff</div>
+    </div>
+    <div style="text-align:center">
+      <div style="width:48px;height:48px;border-radius:8px;background:#ff2f6e;margin:0 auto"></div>
+      <div style="font-size:11px;color:#888;margin-top:4px">Red<br>#ff2f6e</div>
+    </div>
+    <div style="text-align:center">
+      <div style="width:48px;height:48px;border-radius:8px;background:#e0e0e0;margin:0 auto"></div>
+      <div style="font-size:11px;color:#888;margin-top:4px">FG<br>#e0e0e0</div>
+    </div>
+    <div style="text-align:center">
+      <div style="width:48px;height:48px;border-radius:8px;background:#555555;margin:0 auto"></div>
+      <div style="font-size:11px;color:#888;margin-top:4px">Muted<br>#555555</div>
+    </div>
+    <div style="text-align:center">
+      <div style="width:48px;height:48px;border-radius:8px;background:#1a1a1a;border:1px solid #333;margin:0 auto"></div>
+      <div style="font-size:11px;color:#888;margin-top:4px">Surface<br>#1a1a1a</div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px">
+  <div class="label">O que muda nos arquivos</div>
+  <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px">
+    <div style="background:#111;border-left:3px solid #fcee0a;padding:10px 14px;border-radius:0 6px 6px 0;font-size:13px">
+      <strong style="color:#fcee0a">kitty/kitty.conf</strong><br>
+      <span style="color:#888">Nova paleta Cyberpunk 2077 completa (background, 16 cores ANSI, cursor, tabs)</span>
+    </div>
+    <div style="background:#111;border-left:3px solid #00cfff;padding:10px 14px;border-radius:0 6px 6px 0;font-size:13px">
+      <strong style="color:#00cfff">starship/starship.toml</strong> <span style="color:#555">(novo arquivo)</span><br>
+      <span style="color:#888">Prompt hacker multi-linha com usuário, host, dir, git, runtime e horário</span>
+    </div>
+    <div style="background:#111;border-left:3px solid #ff2f6e;padding:10px 14px;border-radius:0 6px 6px 0;font-size:13px">
+      <strong style="color:#ff2f6e">zsh/.zshrc</strong><br>
+      <span style="color:#888">Remove ZSH_THEME + p10k, adiciona <code>eval "$(starship init zsh)"</code></span>
+    </div>
+    <div style="background:#111;border-left:3px solid #555;padding:10px 14px;border-radius:0 6px 6px 0;font-size:13px">
+      <strong style="color:#aaa">install.sh</strong><br>
+      <span style="color:#888">Adiciona Starship ao script de instalação + symlink do starship.toml</span>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:24px;padding:14px 18px;background:#0f1a00;border:1px solid #fcee0a33;border-radius:8px;font-size:13px;color:#aaa">
+  <strong style="color:#fcee0a">Fonte mantida:</strong> JetBrainsMono Nerd Font — funciona perfeitamente com o estilo hacker (├─, └─, ❯ e todos os ícones Nerd Font).
+</div>

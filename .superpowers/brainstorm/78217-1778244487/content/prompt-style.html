@@ -1,0 +1,56 @@
+<h2>Como você quer o prompt?</h2>
+<p class="subtitle">Todos na paleta Cyberpunk 2077. A diferença é o quanto de informação e estrutura você quer ver.</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="minimal-cyber" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#0a0a0a;padding:16px 18px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.9;border-radius:6px;color:#e0e0e0;border:1px solid #1a1a1a">
+        <div style="color:#6c6c6c;font-size:11px">17:42 ·  main ✓</div>
+        <div><span style="color:#fcee0a">~/dotfiles</span></div>
+        <div><span style="color:#00cfff">❯ </span><span style="color:#e0e0e0">git log --oneline</span></div>
+        <div><span style="color:#555">a3f12bc</span> <span style="color:#e0e0e0">fix: update config</span></div>
+        <div><span style="color:#00cfff">❯ </span></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Minimal Cyber</h3>
+      <p>Duas linhas: info secundária pequena no topo, diretório em amarelo na segunda. Símbolo <code>❯</code> em cyan. Limpo e rápido.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="powerline-cyber" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#0a0a0a;padding:16px 18px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.9;border-radius:6px;color:#e0e0e0;border:1px solid #1a1a1a">
+        <div>
+          <span style="background:#fcee0a;color:#0a0a0a;padding:2px 10px;font-weight:bold"> dotfiles </span><span style="color:#fcee0a">&#xe0b0;</span><span style="background:#1a1a1a;color:#00cfff;padding:2px 10px"> main </span><span style="color:#1a1a1a">&#xe0b0;</span><span style="background:#0a0a0a;color:#ff2f6e;padding:2px 8px">✗ 2</span>
+        </div>
+        <div style="height:3px"></div>
+        <div><span style="color:#fcee0a">❯❯ </span><span style="color:#e0e0e0">npm run dev</span></div>
+        <div style="color:#555;font-size:11px">node v20.11.0</div>
+        <div><span style="color:#fcee0a">❯❯ </span></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Powerline Cyber</h3>
+      <p>Segments no estilo powerline com cores cyberpunk. Direita: runtime da linguagem. Símbolo <code>❯❯</code> duplo. Informativo e agressivo.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="hacker-prompt" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#0a0a0a;padding:16px 18px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.9;border-radius:6px;color:#e0e0e0;border:1px solid #1a1a1a">
+        <div><span style="color:#555">┌─[</span><span style="color:#fcee0a">matheus</span><span style="color:#555">@</span><span style="color:#00cfff">macbook</span><span style="color:#555">]─[</span><span style="color:#fcee0a">~/dotfiles</span><span style="color:#555">]</span></div>
+        <div><span style="color:#555">├─[</span><span style="color:#ff2f6e"> main</span><span style="color:#555">·</span><span style="color:#fcee0a">✗2</span><span style="color:#555">]─[</span><span style="color:#555">17:42</span><span style="color:#555">]</span></div>
+        <div><span style="color:#555">└─</span><span style="color:#00cfff">❯ </span><span style="color:#e0e0e0">cat kitty.conf</span></div>
+        <div style="height:3px"></div>
+        <div><span style="color:#555">└─</span><span style="color:#00cfff">❯ </span></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Hacker / Multi-linha</h3>
+      <p>Estilo "hackerman" com linhas conectadas. Exibe usuário, host, path e git em linhas separadas. Muito contexto, muito estilo.</p>
+    </div>
+  </div>
+
+</div>

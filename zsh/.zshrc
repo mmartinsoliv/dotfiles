@@ -437,10 +437,34 @@ export GPG_TTY=$(tty)
 # AI Tools Aliases
 # --------------------------------------------
 
-# Claude Code aliases
-alias claudio="claude --model opus"
-alias claude="claude --model sonnet"
-alias claudin="claude --model haiku"
+# Claude Code aliases with cost tracking
+function claudio() {
+  ~/bin/claude-cost-tracker start opus
+  claude --model opus "$@"
+  local exit_code=$?
+  ~/bin/claude-cost-tracker stop
+  return $exit_code
+}
+
+function claude() {
+  ~/bin/claude-cost-tracker start sonnet
+  command claude --model sonnet "$@"
+  local exit_code=$?
+  ~/bin/claude-cost-tracker stop
+  return $exit_code
+}
+
+function claudin() {
+  ~/bin/claude-cost-tracker start haiku
+  claude --model haiku "$@"
+  local exit_code=$?
+  ~/bin/claude-cost-tracker stop
+  return $exit_code
+}
+
+# Quick cost check
+alias claude-cost='~/bin/claude-cost-tracker total'
+alias claude-status='~/bin/claude-cost-tracker status'
 
 # Avante (Neovim AI)
 alias avante='NVIM_AVANTE_MODE=1 nvim -c "lua vim.defer_fn(function() require(\"avante.api\").zen_mode() end, 100)"'
