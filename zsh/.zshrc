@@ -438,7 +438,7 @@ export GPG_TTY=$(tty)
 # --------------------------------------------
 
 # Claude Code aliases with cost tracking
-function claudio() {
+function claude-max() {
   ~/bin/claude-cost-tracker start opus
   claude --model opus "$@"
   local exit_code=$?
