@@ -29,6 +29,9 @@ require('lazy').setup('plugins', {
   install = {
     colorscheme = { 'cyberpunk' },
   },
+  ui = {
+    border = 'rounded',
+  },
   checker = {
     enabled = true,
     notify = false,
@@ -51,3 +54,6 @@ require('lazy').setup('plugins', {
     },
   },
 })
+
+-- Set colorscheme
+vim.cmd('colorscheme cyberpunk')
