@@ -12,15 +12,21 @@ SESSION_FILE="/tmp/claude-session-$(whoami).json"
 COST_LOG="$HOME/.claude-cost-log"
 
 # Claude API pricing (approximate, per 1M tokens)
-# These are estimates - actual costs may vary
-declare -A PRICING=(
-  ["opus-input"]=15.00
-  ["opus-output"]=75.00
-  ["sonnet-input"]=3.00
-  ["sonnet-output"]=15.00
-  ["haiku-input"]=0.25
-  ["haiku-output"]=1.25
-)
+# Format: MODEL_input_PRICE MODEL_output_PRICE
+get_pricing() {
+  local model="$1"
+  local type="$2"
+  
+  case "${model}-${type}" in
+    opus-input) echo "15.00" ;;
+    opus-output) echo "75.00" ;;
+    sonnet-input) echo "3.00" ;;
+    sonnet-output) echo "15.00" ;;
+    haiku-input) echo "0.25" ;;
+    haiku-output) echo "1.25" ;;
+    *) echo "0" ;;
+  esac
+}
 
 cmd_start() {
   local model="${1:-opus}"
@@ -51,15 +57,10 @@ cmd_stop() {
   local input_tokens=$(jq -r '.input_tokens // 0' "$SESSION_FILE" 2>/dev/null || echo 0)
   local output_tokens=$(jq -r '.output_tokens // 0' "$SESSION_FILE" 2>/dev/null || echo 0)
   
-  # Estimate cost (this is a rough estimate)
-  local cost=0
-  if [[ "$model" == "opus" ]]; then
-    cost=$(echo "scale=4; ($input_tokens / 1000000 * 15) + ($output_tokens / 1000000 * 75)" | bc 2>/dev/null || echo 0)
-  elif [[ "$model" == "sonnet" ]]; then
-    cost=$(echo "scale=4; ($input_tokens / 1000000 * 3) + ($output_tokens / 1000000 * 15)" | bc 2>/dev/null || echo 0)
-  elif [[ "$model" == "haiku" ]]; then
-    cost=$(echo "scale=4; ($input_tokens / 1000000 * 0.25) + ($output_tokens / 1000000 * 1.25)" | bc 2>/dev/null || echo 0)
-  fi
+  # Estimate cost
+  local input_price=$(get_pricing "$model" "input")
+  local output_price=$(get_pricing "$model" "output")
+  local cost=$(echo "scale=4; ($input_tokens / 1000000 * $input_price) + ($output_tokens / 1000000 * $output_price)" | bc 2>/dev/null || echo 0)
   
   # Format duration
   local duration_str=""
