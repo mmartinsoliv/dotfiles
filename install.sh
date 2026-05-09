@@ -355,6 +355,37 @@ install_dotfiles() {
     symlink "$DOTFILES_DIR/.editorconfig" "$HOME/.editorconfig"
   fi
 
+  # Claude Code settings
+  if [[ -f "$DOTFILES_DIR/claude/settings.json" ]]; then
+    mkdir -p "$HOME/.claude"
+    symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
+  fi
+
+  # AI Agents (global)
+  if [[ -d "$DOTFILES_DIR/agents" ]]; then
+    mkdir -p "$HOME/.claude"
+    symlink "$DOTFILES_DIR/agents/rules" "$HOME/.claude/rules"
+    symlink "$DOTFILES_DIR/agents/skills" "$HOME/.claude/skills"
+    symlink "$DOTFILES_DIR/agents/commands" "$HOME/.claude/commands"
+  fi
+
+  # OpenCode plugins
+  if [[ -d "$DOTFILES_DIR/.opencode/plugins" ]]; then
+    mkdir -p "$HOME/.opencode"
+    symlink "$DOTFILES_DIR/.opencode/plugins" "$HOME/.opencode/plugins"
+  fi
+
+  # Bin scripts
+  if [[ -d "$DOTFILES_DIR/bin" ]]; then
+    mkdir -p "$HOME/bin"
+    for script in "$DOTFILES_DIR/bin/"*; do
+      if [[ -f "$script" ]]; then
+        local script_name=$(basename "$script")
+        symlink "$script" "$HOME/bin/$script_name"
+      fi
+    done
+  fi
+
   success "Dotfiles installed"
 }
 

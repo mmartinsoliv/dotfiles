@@ -1,0 +1,46 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "permissions": {
+    "allow": [
+      "Bash",
+      "Read(*)",
+      "Write(*)",
+      "Edit(*)"
+    ],
+    "deny": [
+      "Bash(rm -rf :*)"
+    ]
+  },
+  "model": "opus",
+  "enabledPlugins": {
+    "figma@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": false,
+  "effortLevel": "medium",
+  "theme": "dark-ansi",
+  "editorMode": "vim",
+  "voiceEnabled": true,
+  "hooks": {
+    "notification": {
+      "onWaiting": {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/bin/ai-notify waiting \"$CLAUDE_NOTIFICATION_MESSAGE\" claude"
+          }
+        ]
+      },
+      "onDone": {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/bin/ai-notify done \"\" claude"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -434,6 +434,58 @@ export GPG_TTY=$(tty)
 [[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
 
 # --------------------------------------------
+# AI Tools Aliases
+# --------------------------------------------
+
+# Claude Code aliases
+alias claudio="claude --model opus"
+alias claude="claude --model sonnet"
+alias claudin="claude --model haiku"
+
+# Avante (Neovim AI)
+alias avante='NVIM_AVANTE_MODE=1 nvim -c "lua vim.defer_fn(function() require(\"avante.api\").zen_mode() end, 100)"'
+
+# OpenCode
+export PATH="$HOME/.opencode/bin:$PATH"
+
+# --------------------------------------------
+# Utility Functions
+# --------------------------------------------
+
+# Create directory and file in one command
+function mktouch() {
+  mkdir -p $(dirname "$1") && touch "$1"
+}
+
+# Remove all Neovim swap files
+function clean-swap() {
+  rm -rf ~/.local/state/nvim/swap/**/*.swp
+}
+
+# Delete all git branches except main
+function clean-branches() {
+  git branch | grep -v 'main' | xargs git branch -D
+}
+
+# Kill processes on specified ports
+function kill-ports() {
+  for port in "$@"; do
+    lsof -ti:$port | xargs kill -9 2>/dev/null
+  done
+}
+
+# Quick git add, commit with *, and push
+function commit-sync() {
+  git add . && git commit -m "*" && git push
+}
+
+# Commit changelog with proper prefix
+function commit-changelog() {
+  prefix=$([ -n "$1" ] && echo "docs($1):" || echo "docs:")
+  git commit -m "$prefix updated CHANGELOG.md"
+}
+
+# --------------------------------------------
 # Starship Prompt
 # --------------------------------------------
 
