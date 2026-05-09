@@ -3,9 +3,9 @@ return {
   event = "VeryLazy",
   version = false,
   opts = {
-    provider = "kimi",
-    auto_suggestions_provider = "kimi",
-    kimi = {
+    provider = "openai",
+    auto_suggestions_provider = "openai",
+    openai = {
       endpoint = "https://api.moonshot.cn/v1",
       model = "kimi-latest",
       timeout = 30000,
