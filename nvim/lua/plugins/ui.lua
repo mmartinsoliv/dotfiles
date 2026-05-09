@@ -31,7 +31,7 @@ return {
 
       return {
         options = {
-          theme = 'tokyonight',
+          theme = 'auto',
           globalstatus = true,
           disabled_filetypes = { statusline = { 'dashboard', 'alpha' } },
           component_separators = { left = '', right = '' },

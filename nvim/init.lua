@@ -27,7 +27,7 @@ require('lazy').setup('plugins', {
     lazy = true,
   },
   install = {
-    colorscheme = { 'tokyonight' },
+    colorscheme = { 'cyberpunk' },
   },
   checker = {
     enabled = true,
