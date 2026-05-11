@@ -361,11 +361,10 @@ install_dotfiles() {
     symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
   fi
 
-  # AI Agents (global)
+  # AI Agents (global) — rules and commands only; skills handled separately
   if [[ -d "$DOTFILES_DIR/agents" ]]; then
     mkdir -p "$HOME/.claude"
     symlink "$DOTFILES_DIR/agents/rules" "$HOME/.claude/rules"
-    symlink "$DOTFILES_DIR/agents/skills" "$HOME/.claude/skills"
     symlink "$DOTFILES_DIR/agents/commands" "$HOME/.claude/commands"
   fi
 
@@ -387,6 +386,30 @@ install_dotfiles() {
   fi
 
   success "Dotfiles installed"
+}
+
+# --------------------------------------------
+# Skills
+# --------------------------------------------
+
+install_skills() {
+  print_section "Installing AI Skills"
+
+  if [[ -d "$DOTFILES_DIR/skills" ]]; then
+    # OpenCode / global agents skills
+    mkdir -p "$HOME/.agents"
+    symlink "$DOTFILES_DIR/skills" "$HOME/.agents/skills"
+
+    # Claude Code skills
+    mkdir -p "$HOME/.claude"
+    symlink "$DOTFILES_DIR/skills" "$HOME/.claude/skills"
+
+    local skill_count
+    skill_count=$(find "$DOTFILES_DIR/skills" -maxdepth 1 -mindepth 1 -type d | wc -l | tr -d ' ')
+    success "$skill_count skills synced"
+  else
+    warn "No skills directory found in dotfiles"
+  fi
 }
 
 # --------------------------------------------
@@ -456,6 +479,7 @@ print_summary() {
   echo "  • Zsh + Oh My Zsh + Starship (Cyberpunk prompt)"
   echo "  • Modern CLI tools (fzf, zoxide, eza, bat, etc.)"
   echo "  • Development environments (Node, Python, Rust, Go)"
+  echo "  • AI skills synced to ~/.agents/skills and ~/.claude/skills"
   echo ""
   echo -e "${CYAN}Next steps:${NC}"
   echo "  1. Restart your terminal or run: source ~/.zshrc"
@@ -502,6 +526,9 @@ main() {
 
   # Install dotfiles
   install_dotfiles
+
+  # Install AI skills
+  install_skills
 
   # Install tmux plugins
   install_tmux_plugins
