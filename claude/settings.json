@@ -21,7 +21,7 @@
   "alwaysThinkingEnabled": false,
   "effortLevel": "medium",
   "theme": "dark-ansi",
-  "editorMode": "vim",
+  "editorMode": "auto",
   "voiceEnabled": true,
   "hooks": {
     "Stop": [
