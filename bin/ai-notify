@@ -24,27 +24,27 @@ esac
 # Default messages per type
 case "$TYPE" in
   done)
-    SOUND="/System/Library/Sounds/Blow.aiff"
+    SOUND="default"
     DEFAULT_MSG="Task completed"
     TITLE="$AGENT_NAME ✅"
     ;;
   waiting)
-    SOUND="/System/Library/Sounds/Blow.aiff"
+    SOUND="default"
     DEFAULT_MSG="Need your attention"
     TITLE="$AGENT_NAME ⏳"
     ;;
   error)
-    SOUND="/System/Library/Sounds/Basso.aiff"
+    SOUND="Basso"
     DEFAULT_MSG="Something went wrong"
     TITLE="$AGENT_NAME ❌"
     ;;
   info)
-    SOUND="/System/Library/Sounds/Pop.aiff"
+    SOUND="Pop"
     DEFAULT_MSG="FYI"
     TITLE="$AGENT_NAME 💡"
     ;;
   *)
-    SOUND="/System/Library/Sounds/Blow.aiff"
+    SOUND="default"
     DEFAULT_MSG="Notification"
     TITLE="$AGENT_NAME"
     ;;
@@ -53,8 +53,16 @@ esac
 # Use provided message or default
 NOTIFICATION_MSG="${MESSAGE:-$DEFAULT_MSG}"
 
-# Play sound (suppress errors)
-afplay "$SOUND" 2>/dev/null || true
+# Build osascript command
+NOTIFY_CMD="osascript -e 'display notification \"$NOTIFICATION_MSG\" with title \"$TITLE\" sound name \"$SOUND\"'"
 
-# Send macOS notification
-osascript -e "display notification \"$NOTIFICATION_MSG\" with title \"$TITLE\" sound name \"$SOUND\"" 2>/dev/null || true
+# If running in tmux, use reattach-to-user-namespace
+if [ -n "${TMUX:-}" ] && command -v reattach-to-user-namespace &> /dev/null; then
+  NOTIFY_CMD="reattach-to-user-namespace $NOTIFY_CMD"
+fi
+
+# Execute notification
+eval "$NOTIFY_CMD" 2>/dev/null || true
+
+# Also play sound as fallback
+afplay "/System/Library/Sounds/${SOUND}.aiff" 2>/dev/null || true

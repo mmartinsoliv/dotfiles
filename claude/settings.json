@@ -24,16 +24,8 @@
   "editorMode": "vim",
   "voiceEnabled": true,
   "hooks": {
-    "notification": {
-      "onWaiting": {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/bin/ai-notify waiting \"$CLAUDE_NOTIFICATION_MESSAGE\" claude"
-          }
-        ]
-      },
-      "onDone": {
+    "Stop": [
+      {
         "hooks": [
           {
             "type": "command",
@@ -41,6 +33,17 @@
           }
         ]
       }
-    }
+    ],
+    "Notification": [
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/bin/ai-notify waiting \"$CLAUDE_NOTIFICATION_MESSAGE\" claude"
+          }
+        ]
+      }
+    ]
   }
 }
