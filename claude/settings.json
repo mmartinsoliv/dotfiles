@@ -13,16 +13,9 @@
       "Bash(rm -rf :*)"
     ]
   },
-  "model": "opus",
-  "enabledPlugins": {
-    "figma@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true
-  },
-  "alwaysThinkingEnabled": false,
-  "effortLevel": "medium",
-  "theme": "dark-ansi",
-  "editorMode": "auto",
-  "voiceEnabled": true,
+  "enabledMcpjsonServers": [
+    "sonarqube"
+  ],
   "hooks": {
     "Stop": [
       {
@@ -45,5 +38,15 @@
         ]
       }
     ]
-  }
+  },
+  "enabledPlugins": {
+    "figma@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "model": "opus[1m]",
+  "alwaysThinkingEnabled": false,
+  "effortLevel": "xhigh",
+  "theme": "dark-ansi",
+  "voiceEnabled": true
 }
